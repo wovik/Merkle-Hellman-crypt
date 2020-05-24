@@ -13,8 +13,8 @@ type PrivKey = (Integer, Integer, [Integer])
 type Message = [Integer]
 type Cryptogram = Integer
 
-generatePrivateKey :: StdGen -> (PrivKey, StdGen)
-generatePrivateKey g = ((m, w, rods), newGen'')
+generatePrivateKey :: StdGen -> PrivKey
+generatePrivateKey g = (m, w, rods)
     where
         (m, newGen) = randomR (2^201 + 1, 2^202 - 1) g
         (w', newGen') = randomR (2, m - 2) g
@@ -32,13 +32,15 @@ generateRods g i = (restA ++ [a], gen)
 generateA :: StdGen -> Integer -> (Integer, StdGen)
 generateA g i = randomR ((2^(i-1)-1)*2^100, (2^(i-1))*2^100) g
 
-generatePublicKey :: StdGen -> PrivKey ->(PubKey, StdGen)
-generatePublicKey g = undefined
+generatePublicKey :: PrivKey -> PubKey
+generatePublicKey (_, _, []) = []
+generatePublicKey (m, w, (a:as)) = (w*a `mod` m):generatePublicKey (m, w, as)
 
 generate :: StdGen -> KeyPair
-generate g = (priv, [])
+generate g = (priv, pub)
     where
-        (priv, newGen) = generatePrivateKey g
+        priv = generatePrivateKey g
+        pub = generatePublicKey priv
 
 encrypt :: PubKey -> Message -> Cryptogram
 encrypt [] [] = 0
