@@ -1,10 +1,13 @@
-module MerkleHellmanSpec (spec) where 
+module MerkleHellmanSpec
+    ( spec
+    )
+where
 
-import Test.Hspec
-import MerkleHellman
+import           Test.Hspec
+import           MerkleHellman
 
-pubKey = [5457,1663,216,6013,7439]
-privKey = (8443, 2550, [171,196,457,1191,2410])
+pubKey = [5457, 1663, 216, 6013, 7439]
+privKey = (8443, 2550, [171, 196, 457, 1191, 2410])
 msg = [0, 1, 0, 1, 1]
 crypt = 15115
 

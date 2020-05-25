@@ -1,6 +1,6 @@
 module Main where
 
-import MerkleHellman
+import           MerkleHellman
 
 main :: IO ()
 main = undefined
