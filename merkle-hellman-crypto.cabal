@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 81b01d2498794f0a29d721a1df2981b1bb3b4f784726628ff54d4e44ed93ebcd
+-- hash: 991e2d24c083f611cd8ddad01b5809b3e6f62dde691d8cbf77993fd440c7db4d
 
 name:           merkle-hellman-crypto
 version:        0.1.0.0
@@ -28,6 +28,7 @@ source-repository head
 library
   exposed-modules:
       MerkleHellman
+      MerkleHellmanIO
   other-modules:
       Paths_merkle_hellman_crypto
   hs-source-dirs:
